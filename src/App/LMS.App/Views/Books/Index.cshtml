@@ -1,0 +1,45 @@
+﻿@model IEnumerable<LMS.Application.ViewModel.BooksVm>
+@{
+    var sl = 0;
+}
+<div class="container">
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>#</td>
+                    <td>Book Name</td>
+                    <td>Publisher</td>
+                    <td>CategroyId</td>
+                    <td>Price</td>
+                    <td>Page</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@sl</td>
+                        <td>@item.Name</td>
+                        <td>@item.PublisherId</td>
+                        <td>@item.CategoryId</td>
+                        <td>@item.Price</td>
+                        <td>@item.Page</td>
+
+
+                        <td>
+                            <a class="btn btn-sm btn-success" onclick="paymentEdit(@item.Id)">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                            <a class="btn btn-sm btn-danger" onclick="deletepayment(@item.Id)">
+                                <i class="fa-solid fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    sl++;
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

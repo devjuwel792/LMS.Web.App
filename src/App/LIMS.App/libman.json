@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "sweetalert2@11.12.3",
+      "destination": "wwwroot/lib/sweetalert2/"
+    },
+    {
+      "library": "tinymce@7.2.1",
+      "destination": "wwwroot/lib/tinymce/"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+﻿@model LMS.Application.ViewModel.IdentityModelViewModel.SignUpVm
+
+
+<form asp-action="Signup" class="mb-3">
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input class="form-control" asp-for="Name" placeholder="Enter your email" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter your email" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input class="form-control" asp-for="Password" placeholder="Enter your email" />
+    </div>
+
+    <button class="btn btn-primary d-grid w-100">Sign up</button>
+</form>

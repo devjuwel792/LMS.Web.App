@@ -1,0 +1,161 @@
+﻿@model LMS.Application.ViewModel.BooksVm
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <input type="hidden" id="bookId" />
+    <div class="mb-3 col-md-6">
+        <label asp-for="Name" class="form-label"></label>
+        <input class="form-control" id="bookName" asp-for="Name" placeholder="Enter your email" />
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label asp-for="PublisherId" class="form-label"></label>
+        <input class="form-control" id="bookPubliserId" asp-for="PublisherId" placeholder="Enter your PublisherId" />
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label asp-for="CategoryId" class="form-label"></label>
+        @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, new { @class = "form-control", id = "CategoryId", })
+        @*  <input class="form-control" id="CategoryId" asp-for="CategoryId" placeholder="Enter your Category Id" /> *@
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label asp-for="CoverImage" class="form-label"></label>
+        <input class="form-control" id="coverImage" asp-for="CoverImage" placeholder="Enter your Cover Image" />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="Page" class="form-label"></label>
+        <input class="form-control" id="pageNumber" asp-for="Page" placeholder="Enter your total Page " />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="Status" class="form-label"></label>
+        <input class="form-control" id="status" asp-for="Status" placeholder="Enter your total Page " />
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label asp-for="PublisherYear" class="form-label"></label>
+        <input class="form-control" id="publisherYear" asp-for="PublisherYear" placeholder="Enter your Publisher Year " />
+    </div>
+
+    <div class="mb-3 col-md-6">
+        <label asp-for="EditionDate" class="form-label"></label>
+        <input class="form-control" id="editionDate" asp-for="EditionDate" placeholder="Enter your Edition Date " />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="Description" class="form-label"></label>
+        <input class="form-control" id="description" asp-for="Description" placeholder="Enter your Discription " />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="ISBN" class="form-label"></label>
+        <input class="form-control" id="isbn" asp-for="ISBN" placeholder="Enter your ISBN " />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="Price" class="form-label"></label>
+        <input class="form-control" id="price" asp-for="Price" placeholder="Enter your price " />
+    </div>
+    <div class="mb-3 col-md-6">
+        <label asp-for="Quantity" class="form-label"></label>
+        <input class="form-control" id="quantity" asp-for="Quantity" placeholder="Enter your Quantity " />
+    </div>
+
+
+    <button onclick="AddBook()" class="btn btn-primary d-grid w-100">Sign up</button>
+
+</div>
+
+<div id="loadBookData"></div>
+
+@section Scripts {
+    <script>
+        function AddBook() {
+            console.log($("#CategoryId").val())
+            // $("#saveBtn").text("Create")
+            // loading(true)
+            var BookId = $("#bookId").val();
+            var BookName = $("#bookName").val();
+            var bookPubliserId = $("#bookPubliserId").val();
+            var CategoryId = $("#CategoryId").val();
+            var coverImage = $("#coverImage").val();
+            var pageNumber = $("#pageNumber").val();
+            var status = $("#status").val();
+            var publisherYear = $("#publisherYear").val();
+            var editionDate = $("#editionDate").val();
+            var description = $("#description").val();
+            var isbn = $("#isbn").val();
+            var price = $("#price").val();
+            var quantity = $("#quantity").val();
+
+            var book = {
+                Id: BookId,
+                Name: BookName,
+                Description: description,
+                Page: pageNumber,
+                Quantity: quantity,
+                Status: status,
+                Price: price,
+                PublisherId: bookPubliserId,
+                PublisherYear: publisherYear,
+                EditionDate: editionDate,
+                CoverImage: coverImage,
+                ISBN: isbn,
+                CategoryId: CategoryId,
+            }
+
+            $.ajax({
+
+                type: "POST",
+                url: "/Books/CreateOrEdit",
+                data: book,
+                success: function (data) {
+                    $("#loadBookData").html(data)
+                    GetallBooks();
+                    // Clear();
+                    // DropdownCategory();
+                    // GetAllCategory();
+                    // loading(false)
+                    Toast.fire({
+                        icon: "success",
+                        title: data.message,
+                    })
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    Toast.fire({
+                        icon: "error",
+                        title: "Book Added Fail",
+                    })
+                }
+            });
+
+        }
+
+        function GetallBooks() {
+            $.ajax({
+
+                type: "GET",
+                url: "/Books",
+                success: function (data) {
+                    $("#loadBookData").html(data)
+                    // Clear();
+                    // DropdownCategory();
+                    // GetAllCategory();
+                    // loading(false)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    alert("juwel")
+                    // conso
+                }
+            });
+
+        }
+
+        GetallBooks();
+        tinymce.init({
+            selector: 'textarea',  // change this value according to your HTML
+            plugins: 'media',
+            toolbar: 'media',
+            media_alt_source: false
+        });
+    </script>
+}
