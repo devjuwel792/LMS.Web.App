@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LMS.Application\LMS.Application.csproj" />
+    <ProjectReference Include="..\LMS.Infrastructures\LMS.Infrastructure.csproj" />
     <ProjectReference Include="..\LMS.Infrastructure\LMS.Infrastructure.csproj" />
   </ItemGroup>
 

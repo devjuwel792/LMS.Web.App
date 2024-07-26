@@ -1,4 +1,5 @@
-﻿using LMS.Application.Repositories.Base;
+﻿using LMS.Application.Repositories;
+using LMS.Application.Repositories.Base;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -6,7 +7,7 @@ namespace LMS.Application;
 
 public static class ServiceCollectionExtensions
 {
-   public static  void AddApplicationService(this IServiceCollection services,IConfiguration configuration)
+    public static void AddApplicationService(this IServiceCollection services, IConfiguration configuration)
     {
         services.Scan(scan => scan.FromAssemblyOf<IApplication>()
       .AddClasses(classes => classes.AssignableTo<IApplication>())
@@ -14,11 +15,11 @@ public static class ServiceCollectionExtensions
       .AsSelfWithInterfaces()
       .WithScopedLifetime());
 
+        services.AddScoped<IAccountRepository, AccountRepository>();
 
-        services.AddAutoMapper(x => {
+        services.AddAutoMapper(x =>
+        {
             x.AddMaps(typeof(IApplication).Assembly);
-
         });
     }
-    
 }
