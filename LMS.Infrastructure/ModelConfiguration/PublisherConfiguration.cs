@@ -1,6 +1,6 @@
 ﻿using LMS.Domain.Model;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace LMS.Infrastructure.ModelConfiguration;
 
-public class CategoryConfiguration : IEntityTypeConfiguration<Category>
+public class PublisherConfiguration : IEntityTypeConfiguration<Publisher>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public void Configure(EntityTypeBuilder<Publisher> builder)
     {
-       builder.ToTable(nameof(Category));
+        builder.ToTable(nameof(Publisher));
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Name).HasMaxLength(15).IsRequired();
-        builder.Property(c=>c.Description).HasMaxLength(100);
-
+        builder.Property(c => c.Description).HasMaxLength(100);
     }
 }
