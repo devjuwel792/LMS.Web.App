@@ -10,11 +10,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Application.Repositories;
 
-public interface ICategoryRepository : IBaseRepository<Category, CategoryVm, long>
+public interface IPublisherRepository : IBaseRepository<Publisher, PublisherVm, long>
 {
     public IEnumerable<SelectListItem> Dropdown();
-
-    public Task<IEnumerable<CategoryVm>> DefaultCategory(long id);
-
-    public Task<long> DefaultCategory();
 }
