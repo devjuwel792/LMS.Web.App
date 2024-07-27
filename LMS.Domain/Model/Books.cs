@@ -18,7 +18,7 @@ public class Books : AuditableEntity
     public long PublisherId { get; set; }
     public Publisher? Publisher { get; set; }
     public DateTime? PublisherYear { get; set; }
-    public DateTime EditionDate { get; set; }
+    public DateTime? EditionDate { get; set; }
     public string? CoverImage { get; set; }
     public int ISBN { get; set; }
     public long CategoryId { get; set; }
