@@ -4,6 +4,7 @@ using LMS.Infrastructure.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240727092113_Update-bookTable123")]
+    partial class UpdatebookTable123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,8 +48,8 @@ namespace LMS.Infrastructure.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("EditionDate")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("EditionDate")
+                        .HasColumnType("date");
 
                     b.Property<int>("ISBN")
                         .HasColumnType("int");
@@ -68,8 +71,8 @@ namespace LMS.Infrastructure.Migrations
                     b.Property<long>("PublisherId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime?>("PublisherYear")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly?>("PublisherYear")
+                        .HasColumnType("date");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -139,13 +142,13 @@ namespace LMS.Infrastructure.Migrations
                         {
                             Id = 1L,
                             CreateBy = 0L,
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 32, 15, 474, DateTimeKind.Unspecified).AddTicks(9060), new TimeSpan(0, 6, 0, 0, 0)),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 21, 11, 358, DateTimeKind.Unspecified).AddTicks(7237), new TimeSpan(0, 6, 0, 0, 0)),
                             Default = true,
                             IsDeleted = false,
                             Name = "UnCategoried",
                             RootId = 0L,
                             UpdateBy = 0L,
-                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 32, 15, 474, DateTimeKind.Unspecified).AddTicks(9098), new TimeSpan(0, 6, 0, 0, 0))
+                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 21, 11, 358, DateTimeKind.Unspecified).AddTicks(7277), new TimeSpan(0, 6, 0, 0, 0))
                         });
                 });
 
@@ -258,11 +261,11 @@ namespace LMS.Infrastructure.Migrations
                         {
                             Id = 1L,
                             CreateBy = 0L,
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 32, 15, 475, DateTimeKind.Unspecified).AddTicks(920), new TimeSpan(0, 6, 0, 0, 0)),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 21, 11, 358, DateTimeKind.Unspecified).AddTicks(8861), new TimeSpan(0, 6, 0, 0, 0)),
                             IsDeleted = false,
                             Name = "UnKnown",
                             UpdateBy = 0L,
-                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 32, 15, 475, DateTimeKind.Unspecified).AddTicks(932), new TimeSpan(0, 6, 0, 0, 0))
+                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 7, 27, 15, 21, 11, 358, DateTimeKind.Unspecified).AddTicks(8869), new TimeSpan(0, 6, 0, 0, 0))
                         });
                 });
 
