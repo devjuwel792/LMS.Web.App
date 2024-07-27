@@ -13,6 +13,7 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
     [Route("/Insart-books")]
     public IActionResult InsartBook()
     {
+        ViewBag.status = new List<string>() { "Hide", "Show", };
         ViewBag.CategoryList = new List<SelectListItem> { new SelectListItem { Value = "0", Text = "Select One" } }.Concat(categoryRepository.Dropdown()).ToList();
         return View();
     }
@@ -75,5 +76,42 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
             return Json(data);
         }
         return Json(new { success = false, message = "Book Update Failed!" });
+    }
+
+    [HttpGet("files")]
+    public IActionResult GetFiles()
+    {
+        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        if (!Directory.Exists(folderPath))
+        {
+            return NotFound(new { message = "Directory not found" });
+        }
+
+        var files = Directory.GetFiles(folderPath)
+                             .Select(Path.GetFileName)
+                             .ToList();
+
+        return Ok(files);
+    }
+
+    [HttpDelete("delete/{fileName}")]
+    public IActionResult DeleteFile(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName))
+        {
+            return BadRequest(new { message = "File name cannot be null or empty" });
+        }
+
+        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", fileName);
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+            return Ok(new { message = "File deleted successfully" });
+        }
+        else
+        {
+            return NotFound(new { message = "File not found" });
+        }
     }
 }
