@@ -1,47 +1,94 @@
-﻿@model IEnumerable<LMS.Application.ViewModel.BooksVm>
+﻿
 @{
-    
-    Layout = "~/Views/Shared/_Layout.cshtml";
-    var sl = 0;
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
 }
-<div class="container">
-    <div class="col-md-12">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <td>#</td>
-                    <td>Book Name</td>
-                    <td>Publisher</td>
-                    <td>CategroyId</td>
-                    <td>Price</td>
-                    <td>Page</td>
-                    <td>Action</td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@sl</td>
-                        <td>@item.Name</td>
-                        <td>@item.PublisherId</td>
-                        <td>@item.CategoryId</td>
-                        <td>@item.Price</td>
-                        <td>@item.Page</td>
 
+<div id="loadBookData"></div>
 
-                        <td>
-                            <a class="btn btn-sm btn-success" onclick="paymentEdit(@item.Id)">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a class="btn btn-sm btn-danger" onclick="deletepayment(@item.Id)">
-                                <i class="fa-solid fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    sl++;
+@section Scripts{
+    <script>
+        
+        function GetallBooks() {
+           
+            loading(true)
+            $.ajax({
+                type: "GET",
+                url: "/get-all-books",
+                success: function (data) {
+                    $("#loadBookData").html(data)
+                   
+                    
+                    loading(false)
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+
+                    loading(false)
                 }
-            </tbody>
-        </table>
-    </div>
-</div>
+            });
+
+        }
+
+        GetallBooks();
+        var TrashBook = function (id) {
+            
+            loading(true)
+            $.ajax({
+                type: "POST",
+                url: "/Books/MoveToTrash",
+                data: { Id: id },
+                success: function (data) {
+                    loading(false)
+                    GetallBooks();
+                    Toast.fire({
+                        icon: "success",
+                        title: data.message,
+                    })
+
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    loading(false)
+                    Toast.fire({
+                        icon: "success",
+                        title: "Not Delete This Item",
+                    })
+
+                    console.error("AJAX Error:", textStatus, errorThrown);
+                }
+            });
+        }
+
+
+        var UpdateCategory = function (id) {
+            $("#saveBtn").text("Update")
+            loading(true)
+            $.ajax({
+                type: "POST",
+                url: "/Books/EditBookItem",
+                data: { Id: id },
+                success: function (data) {
+                    loading(false)
+                    console.log(data)
+                   $("#bookId").val(data.id);
+                     $("#bookName").val(data.name);
+                     $("#bookPubliserId").val("");
+                    $("#CategoryId").val("");
+                    $("#coverImage").val("");
+                     $("#pageNumber").val(data.page)
+                     $("#status").val(data.status);
+                    $("#publisherYear").val(data.publisherYear);
+                    var editionDate = $("#editionDate").val();
+                    var description = tinymce.activeEditor.getContent({ format: 'html' });
+                    var isbn = $("#isbn").val();
+                    var price = $("#price").val();
+                    var quantity = $("#quantity").val();
+                   
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    loading(false)
+                    console.error("AJAX Error:", textStatus, errorThrown);
+                }
+            });
+        }
+
+    </script>
+}

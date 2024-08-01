@@ -1,0 +1,21 @@
+﻿@model LMS.Application.ViewModel.FileInfoModel;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
+}
+
+
+<form  id="uploadForm" >
+    <label asp-for="Path" class="form-label">Name</label>
+    <input asp-for="Path" id="categoryName" class="form-control" placeholder="Enter Farm Name" />
+    <button type="submit">Upload</button>
+</form>
+@section Scripts{
+    <script>
+        $("#uploadForm").submit(function (e) {
+            e.preventDefault();
+            console.log($("#categoryName").val())
+            
+        });
+    </script>
+}

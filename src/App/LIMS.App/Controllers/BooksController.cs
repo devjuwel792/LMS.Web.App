@@ -1,10 +1,9 @@
 ﻿using AutoMapper;
 using LMS.Application.Repositories;
 using LMS.Application.ViewModel;
-using LMS.Domain.Model;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.Operations;
 
 namespace LMS.App.Controllers;
 
@@ -16,6 +15,13 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
         ViewBag.status = new List<string>() { "Hide", "Show", };
         ViewBag.CategoryList = new List<SelectListItem> { new SelectListItem { Value = "0", Text = "Select One" } }.Concat(categoryRepository.Dropdown()).ToList();
         return View();
+    }
+
+    [Route("/get-all-books")]
+    public async Task<IActionResult> GetAllBook()
+    {
+        var data = await booksRepository.GetAsync();
+        return View(data);
     }
 
     public async Task<IActionResult> Index()
@@ -35,7 +41,6 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
             book.PublisherId = book.PublisherId == 0 ? 1 : book.PublisherId;
 
             await booksRepository.InsartAsync(book);
-            ModelState.Clear();
 
             return Json(new { message = "Book Added Sucessfull" });
         }
@@ -46,13 +51,13 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
         return Json(new { message = "Book Added Fail" });
     }
 
-    public async Task<JsonResult> Delete(long id)
+    public async Task<JsonResult> MoveToTrash(long id)
     {
         try
         {
-            await categoryRepository.DeleteFromDB(id);
+            await booksRepository.DeleteAsync(id);
 
-            return Json(new { message = "Item Delete Sucessfull" });
+            return Json(new { message = "Item Moved To Trush" });
         }
         catch (Exception ex)
         {
@@ -76,42 +81,5 @@ public class BooksController(IBooksRepository booksRepository, ICategoryReposito
             return Json(data);
         }
         return Json(new { success = false, message = "Book Update Failed!" });
-    }
-
-    [HttpGet("files")]
-    public IActionResult GetFiles()
-    {
-        string folderPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
-        if (!Directory.Exists(folderPath))
-        {
-            return NotFound(new { message = "Directory not found" });
-        }
-
-        var files = Directory.GetFiles(folderPath)
-                             .Select(Path.GetFileName)
-                             .ToList();
-
-        return Ok(files);
-    }
-
-    [HttpDelete("delete/{fileName}")]
-    public IActionResult DeleteFile(string fileName)
-    {
-        if (string.IsNullOrEmpty(fileName))
-        {
-            return BadRequest(new { message = "File name cannot be null or empty" });
-        }
-
-        string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", fileName);
-
-        if (System.IO.File.Exists(filePath))
-        {
-            System.IO.File.Delete(filePath);
-            return Ok(new { message = "File deleted successfully" });
-        }
-        else
-        {
-            return NotFound(new { message = "File not found" });
-        }
     }
 }

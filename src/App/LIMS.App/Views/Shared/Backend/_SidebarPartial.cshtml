@@ -1,0 +1,85 @@
+﻿@functions {
+    public bool IsMenuActive(string controller)
+    {
+        var currentController = ViewContext.RouteData.Values["controller"] as string;
+        return string.Equals(controller, currentController, StringComparison.OrdinalIgnoreCase);
+    }
+}
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+    <div class="app-brand demo">
+        <a asp-action="Index" asp-controller="Home" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                <img src="~/img/logo.png" />
+            </span>
+           
+        </a>
+
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+    <ul class="menu-inner py-1">
+        <!-- Dashboards -->
+        <li class="menu-item @(IsMenuActive("Home") ? " active open" : "")">
+            <a asp-action="Index" asp-controller="Admin" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                <div data-i18n="Dashboards">Dashboards</div>
+                <div class="badge bg-danger rounded-pill ms-auto">5</div>
+            </a>
+        </li>
+
+      
+
+
+
+        <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">User</span>
+        </li>
+
+
+        <!-- Pages -->
+        <li class="menu-item @(IsMenuActive("User") ? " active open" : "")">
+            <a asp-action="Index" asp-controller="User" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-user-account"></i>
+                <div >Customer</div>
+            </a>
+        </li>
+        <li class="menu-item @(IsMenuActive("HouseOwner") ? " active open" : "") ">
+            <a asp-action="Index" asp-controller="HouseOwner" class="menu-link">
+                <i class=''></i>
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div data-i18n="Dashboards">House Owner</div>
+            </a>
+        </li>
+        
+
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Rooftop</span></li>
+        <li class="menu-item @((ViewBag.path=="/Farm") ? " active open" : "") ">
+            <a asp-action="Index" asp-controller="Farm" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-building-house"></i>
+                <div data-i18n="Dashboards">Available Rooftop</div>
+            </a>
+        </li>
+        <li class="menu-item @((ViewBag.path=="/Farm/CreateOrEditRoofTop") ? " active open" : "") ">
+            <a asp-action="CreateOrEditRoofTop" asp-controller="Farm" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-plus-circle"></i>
+                <div data-i18n="Dashboards">Add Rooftop</div>
+            </a>
+        </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Payment</span></li>
+        <li class="menu-item @((ViewBag.path=="/Payment") ? " active open" : "")">
+            <a asp-action="Index" asp-controller="Payment" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-support"></i>
+                <div data-i18n="Support">Confirm</div>
+            </a>
+        </li>
+        <li class="menu-item @((ViewBag.path=="/Payment/Pending") ? " active open" : "")">
+            <a asp-action="Pending" asp-controller="Payment" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-file"></i>
+                <div data-i18n="Documentation">Pending</div>
+            </a>
+        </li>
+    </ul>
+</aside>

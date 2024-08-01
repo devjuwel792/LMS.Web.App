@@ -9,6 +9,14 @@
     {
       "library": "tinymce@7.2.1",
       "destination": "wwwroot/lib/tinymce/"
+    },
+    {
+      "library": "apexcharts@3.51.0",
+      "destination": "wwwroot/lib/apex-charts/apexcharts/"
+    },
+    {
+      "library": "perfect-scrollbar@1.5.5",
+      "destination": "wwwroot/lib/perfect-scrollbar/"
     }
   ]
 }

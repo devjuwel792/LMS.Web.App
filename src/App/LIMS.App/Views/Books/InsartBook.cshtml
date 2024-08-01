@@ -1,93 +1,97 @@
 ﻿@model LMS.Application.ViewModel.BooksVm
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/Backend/_Layout.cshtml";
 }
+<form id="PostBook">
+    <div class="row">
+        <input type="hidden" id="bookId" />
+        <div class="col-md-9">
+            <div class="row">
+                <div class="mb-3 col-12">
+                    <label asp-for="Name" class="form-label"></label>
+                    <input class="form-control" id="bookName" asp-for="Name" placeholder="Enter your email" />
+                </div>
+                <div class="mb-3 col-12">
+                    <label asp-for="Description" class="form-label"></label>
 
-<div class="row">
-    <input type="hidden" id="bookId" />
-    <div class="col-md-9">
-        <div class="row">
-            <div class="mb-3 col-12">
-                <label asp-for="Name" class="form-label"></label>
-                <input class="form-control" id="bookName" asp-for="Name" placeholder="Enter your email" />
-            </div>
-            <div class="mb-3 col-12">
-                <label asp-for="Description" class="form-label"></label>
-
-                <textarea class="form-control editor" id="description" asp-for="Description" placeholder="Enter your Discription " /></textarea>
-            </div>
-            <div class="mb-3 col-md-6">
-                <label asp-for="Page" class="form-label"></label>
-                <input class="form-control" id="pageNumber" asp-for="Page" placeholder="Enter your total Page " />
-            </div>
-            <div class="mb-3 col-md-6">
-                <label asp-for="ISBN" class="form-label"></label>
-                <input class="form-control" id="isbn" asp-for="ISBN" placeholder="Enter your ISBN " />
-            </div>
-            <div class="mb-3 col-md-6">
-                <label asp-for="Price" class="form-label"></label>
-                <input class="form-control" id="price" asp-for="Price" placeholder="Enter your price " />
-            </div>
-            <div class="mb-3 col-md-6">
-                <label asp-for="Quantity" class="form-label"></label>
-                <input class="form-control" id="quantity" asp-for="Quantity" placeholder="Enter your Quantity" />
+                    <textarea class="form-control editor" id="description" asp-for="Description" placeholder="Enter your Discription " /></textarea>
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Page" class="form-label"></label>
+                    <input class="form-control" id="pageNumber" asp-for="Page" placeholder="Enter your total Page " />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="ISBN" class="form-label"></label>
+                    <input class="form-control" id="isbn" asp-for="ISBN" placeholder="Enter your ISBN " />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input class="form-control" id="price" asp-for="Price" placeholder="Enter your price " />
+                </div>
+                <div class="mb-3 col-md-6">
+                    <label asp-for="Quantity" class="form-label"></label>
+                    <input class="form-control" id="quantity" asp-for="Quantity" placeholder="Enter your Quantity" />
+                </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <button type="submit" class="btn btn-primary mb-3 saveBtn order-5 d-grid w-100">Create</button>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="PublisherId" class="form-label"></label>
+                <input class="form-control" id="bookPubliserId" asp-for="PublisherId" placeholder="Enter your PublisherId" />
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="CategoryId" class="form-label"></label>
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, new { @class = "form-control", id = "CategoryId", })
+                @*  <input class="form-control" id="CategoryId" asp-for="CategoryId" placeholder="Enter your Category Id" /> *@
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="CoverImage" class="form-label"></label>
+                <input type="file" class="form-control" id="coverImage" asp-for="CoverImage" placeholder="Enter your Cover Image" />
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="Status" class="form-label"></label>
+                @* <input class="form-control" id="status" asp-for="Status"  placeholder="Enter your total Page " /> *@
+                @Html.DropDownList("Status", new List<SelectListItem>
+                {
+                new SelectListItem{Text="Publish",Value="1"},
+                new SelectListItem{Text="Set as Draft",Value="0" },
+
+
+                }, new { @class = "form-control", id = "status", })
+
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="PublisherYear" class="form-label"></label>
+                <input type="date" class="form-control" id="publisherYear" asp-for="PublisherYear" placeholder="Enter your Publisher Year " />
+            </div>
+
+            <div class="mb-3 col-md-12">
+                <label asp-for="EditionDate" class="form-label"></label>
+                <input class="form-control" id="editionDate" asp-for="EditionDate" placeholder="Enter your Edition Date " />
+            </div>
+
+
+
+
+        </div>
+
+
     </div>
-    <div class="col-md-3">
-        <button onclick="AddBook()" class="btn btn-primary mb-3 saveBtn order-5 d-grid w-100">Create</button>
 
-        <div class="mb-3 col-md-12">
-            <label asp-for="PublisherId" class="form-label"></label>
-            <input class="form-control" id="bookPubliserId" asp-for="PublisherId" placeholder="Enter your PublisherId" />
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label asp-for="CategoryId" class="form-label"></label>
-            @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, new { @class = "form-control", id = "CategoryId", })
-            @*  <input class="form-control" id="CategoryId" asp-for="CategoryId" placeholder="Enter your Category Id" /> *@
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label asp-for="CoverImage" class="form-label"></label>
-            <input type="file" class="form-control" id="coverImage" asp-for="CoverImage" placeholder="Enter your Cover Image" />
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label asp-for="Status" class="form-label"></label>
-            @* <input class="form-control" id="status" asp-for="Status"  placeholder="Enter your total Page " /> *@
-            @Html.DropDownList("Status", new List<SelectListItem>
-            {
-            new SelectListItem{Text="Publish",Value="1"},
-            new SelectListItem{Text="Set as Draft",Value="0" },
+</form>
 
 
-            }, new { @class = "form-control", id = "status", })
-
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label asp-for="PublisherYear" class="form-label"></label>
-            <input type="date" class="form-control" id="publisherYear" asp-for="PublisherYear" placeholder="Enter your Publisher Year " />
-        </div>
-
-        <div class="mb-3 col-md-12">
-            <label asp-for="EditionDate" class="form-label"></label>
-            <input class="form-control" id="editionDate" asp-for="EditionDate" placeholder="Enter your Edition Date " />
-        </div>
-
-
-
-
-    </div>
-
-
-</div>
-
-<div id="loadBookData"></div>
 
 @section Scripts {
     <script>
+
+
         function BookStatus() {
             var txt = ($("#status").val() == 1 ? "Publish" : "Set as Draft")
             $(".saveBtn").text(txt)
@@ -99,10 +103,8 @@
             })
         }
 
-
-        function AddBook() {
-            console.log($("#CategoryId").val())
-
+        $("#PostBook").submit(function (e) {
+            e.preventDefault();
             loading(true)
             var BookId = $("#bookId").val();
             var BookName = $("#bookName").val();
@@ -141,7 +143,10 @@
                 success: function (data) {
                     $("#loadBookData").html(data)
                     // GetallBooks();
-                    // Clear();
+                    CleanInput(true);
+                    if (typeof (tinyMCE) != 'undefined') {
+                        $('#tinymce').val('');  // Removes all paragraphs in the active editor
+                    }
                     // DropdownCategory();
                     // GetAllCategory();
                     loading(false)
@@ -159,41 +164,11 @@
                 }
             });
 
-        }
-
-        // function GetallBooks() {
-        //     $.ajax({
-
-        //         type: "GET",
-        //         url: "/Books",
-        //         success: function (data) {
-        //             $("#loadBookData").html(data)
-        //             // Clear();
-        //             // DropdownCategory();
-        //             // GetAllCategory();
-        //             // loading(false)
-        //         },
-        //         error: function (jqXHR, textStatus, errorThrown) {
-        //             alert("juwel")
-        //             // conso
-        //         }
-        //     });
-
-        // }
-
-        // GetallBooks();
-        tinymce.init({
-            selector: 'textarea#description',  // change this value according to your HTML
-            max_height: 1000,
-            toolbar_sticky: false,
-            min_height: 300,
-            plugins: [
-                "advlist", "anchor", "autolink", "charmap", "code", "fullscreen",
-                "help", "image", "insertdatetime", "link", "lists", "media",
-                "preview", "searchreplace", "table", "visualblocks", "accordion"
-            ],
-            toolbar: "undo redo |link image accordion | styles | bold italic underline strikethrough | align | bullist numlist",
-            media_alt_source: false
         });
+       
+
+         
+
+        
     </script>
 }
