@@ -90,7 +90,7 @@
             }
             else
             {
-                <a asp-action="Login" asp-controller="Account">
+                <a asp-action="Login" asp-controller="Account" asp-route-returnUrl="@Context.Request.Path">
                     Login
                 </a>
                 <a asp-action="SignIn" asp-controller="Account">
