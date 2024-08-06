@@ -13,11 +13,13 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
         return View();
     }
 
+    [Route("signup")]
     public IActionResult Signup()
     {
         return View();
     }
 
+    [Route("signup")]
     [HttpPost]
     public async Task<IActionResult> Signup(SignUpVm entity)
     {
@@ -29,8 +31,32 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
         return View();
     }
 
+    [Route("login")]
     public IActionResult Login()
     {
         return View();
+    }
+
+    [Route("login")]
+    [HttpPost]
+    public async Task<IActionResult> Login(LoginVm data)
+    {
+        if (ModelState.IsValid)
+        {
+            var result = await accountRepository.PasswordSignInAsync(data);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+        return View(data);
+    }
+
+    [Route("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await accountRepository.SignOutAsync();
+
+        return RedirectToAction("Index", "Home");
     }
 }

@@ -8,13 +8,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LMS.Infrastructure.ModelConfiguration
+namespace LMS.Infrastructure.ModelConfiguration;
+
+public class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {
-    internal class ApplicationUserConfiguration : IEntityTypeConfiguration<ApplicationUser>
+    public void Configure(EntityTypeBuilder<ApplicationUser> builder)
     {
-        public void Configure(EntityTypeBuilder<ApplicationUser> builder)
-        {
-            builder.Property(x => x.Name);
-        }
+        builder.Property(x => x.Name);
     }
 }

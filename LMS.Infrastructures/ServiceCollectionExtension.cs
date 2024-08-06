@@ -21,11 +21,17 @@ public static class ServiceCollectionExtension
         {
             builder.UseSqlServer(configuration.GetConnectionString(ApplicationConstants.DefaultConnection));
         }, ServiceLifetime.Scoped);
+        //services.Configure<IdentityOptions>(options =>
+        //{
+        //    options.Password.RequiredLength = 7;
+        //    options.Password.RequireDigit = false;
+        //    options.Password.RequireLowercase = false;
+        //    options.Password.RequireUppercase = false;
+        //    options.Password.RequiredUniqueChars = 0;
+        //});
+        services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-        services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-
-     .AddRoles<IdentityRole>()
-     .AddEntityFrameworkStores<ApplicationDbContext>();
         return services;
     }
 }

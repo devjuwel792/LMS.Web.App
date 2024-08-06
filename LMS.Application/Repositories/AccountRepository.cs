@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Application.Repositories;
 
-public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper mapper) : IAccountRepository
+public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper mapper, SignInManager<ApplicationUser> signInManager) : IAccountRepository
 {
     private readonly UserManager<ApplicationUser> userManager = userManager;
 
@@ -27,5 +27,17 @@ public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper
         //};
         var result = await userManager.CreateAsync(user, entity.Password);
         return result;
+    }
+
+    public async Task<SignInResult> PasswordSignInAsync(LoginVm data)
+    {
+        //var user = mapper.Map<ApplicationUser>(data);
+        var result = await signInManager.PasswordSignInAsync(data.Email, data.Password, data.RememberMe, false);
+        return result;
+    }
+
+    public async Task SignOutAsync()
+    {
+        await signInManager.SignOutAsync();
     }
 }
