@@ -39,13 +39,17 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
 
     [Route("login")]
     [HttpPost]
-    public async Task<IActionResult> Login(LoginVm data)
+    public async Task<IActionResult> Login(LoginVm data, string returnUrl)
     {
         if (ModelState.IsValid)
         {
             var result = await accountRepository.PasswordSignInAsync(data);
             if (result.Succeeded)
             {
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return LocalRedirect(returnUrl);
+                }
                 return RedirectToAction("Index", "Home");
             }
         }

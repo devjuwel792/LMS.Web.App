@@ -29,9 +29,13 @@ public static class ServiceCollectionExtension
         //    options.Password.RequireUppercase = false;
         //    options.Password.RequiredUniqueChars = 0;
         //});
+
         services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
                  .AddEntityFrameworkStores<ApplicationDbContext>();
-
+        services.ConfigureApplicationCookie(config =>
+                {
+                    config.LoginPath = "/login";
+                });
         return services;
     }
 }
