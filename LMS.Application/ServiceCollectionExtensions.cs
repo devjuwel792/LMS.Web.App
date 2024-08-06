@@ -1,5 +1,9 @@
-﻿using LMS.Application.Repositories;
+﻿using LMS.Application.Helpers;
+using LMS.Application.Repositories;
 using LMS.Application.Repositories.Base;
+using LMS.Application.Service;
+using LMS.Domain.Model.IdentityModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +20,8 @@ public static class ServiceCollectionExtensions
       .WithScopedLifetime());
 
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
+        services.AddScoped<IUserService, UserService>();
 
         services.AddAutoMapper(x =>
         {

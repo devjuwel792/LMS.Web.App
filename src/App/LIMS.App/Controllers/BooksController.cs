@@ -5,15 +5,18 @@ using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
+using LMS.Application.Service;
 
 namespace LMS.App.Controllers;
 
-public class BooksController(IBooksRepository booksRepository, ICategoryRepository categoryRepository, IMapper mapper) : Controller
+public class BooksController(IBooksRepository booksRepository, ICategoryRepository categoryRepository, IMapper mapper, IUserService userService) : Controller
 {
     [Route("/Insart-books")]
     [Authorize]
     public IActionResult InsartBook()
     {
+        var userId = userService.GetUserId();
+        var auth = userService.IsAuthenticated();
         ViewBag.status = new List<string>() { "Hide", "Show", };
         ViewBag.CategoryList = new List<SelectListItem> { new SelectListItem { Value = "0", Text = "Select One" } }.Concat(categoryRepository.Dropdown()).ToList();
         return View();

@@ -47,7 +47,9 @@
                                         <span class="fw-medium d-block">
 
                                         </span>
-                                        <small class="text-muted">@User.Identity.Name</small>
+                                        <small class="text-muted">@* @User.Identity.Name *@
+                                            @User.FindFirst("DisplayName")?.Value
+                                        </small>
                                     </div>
                                 </div>
                             </a>
@@ -93,7 +95,7 @@
                 <a asp-action="Login" asp-controller="Account" asp-route-returnUrl="@Context.Request.Path">
                     Login
                 </a>
-                <a asp-action="SignIn" asp-controller="Account">
+                <a asp-action="signup" asp-controller="Account">
                     Sign In
                 </a>
             }
