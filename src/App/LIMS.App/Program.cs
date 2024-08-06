@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Add dbContext
-builder.Services.AddIOCConfiguration(builder.Configuration); 
+builder.Services.AddIOCConfiguration(builder.Configuration);
 
 //builder.Services.a
 var app = builder.Build();

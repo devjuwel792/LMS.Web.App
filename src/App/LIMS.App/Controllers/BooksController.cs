@@ -4,12 +4,14 @@ using LMS.Application.ViewModel;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LMS.App.Controllers;
 
 public class BooksController(IBooksRepository booksRepository, ICategoryRepository categoryRepository, IMapper mapper) : Controller
 {
     [Route("/Insart-books")]
+    [Authorize]
     public IActionResult InsartBook()
     {
         ViewBag.status = new List<string>() { "Hide", "Show", };

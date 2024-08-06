@@ -1,5 +1,23 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model LMS.Application.ViewModel.IdentityModelViewModel.LoginVm
+
+
+<form asp-action="Login" class="mb-3">
+
+   
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter your email" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input class="form-control" asp-for="Password" placeholder="Enter your email" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="RememberMe" class="form-label"></label>
+        <input  class="form-control" asp-for="RememberMe" placeholder="Enter your email" />
+    </div>
+ 
+
+    <button class="btn btn-primary d-grid w-100">Sign up</button>
+</form>

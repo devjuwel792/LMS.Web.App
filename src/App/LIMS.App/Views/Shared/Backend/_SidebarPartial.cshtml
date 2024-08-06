@@ -35,15 +35,15 @@
 
 
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">User</span>
+            <span class="menu-header-text">Books</span>
         </li>
 
 
         <!-- Pages -->
         <li class="menu-item @(IsMenuActive("User") ? " active open" : "")">
-            <a asp-action="Index" asp-controller="User" class="menu-link">
+            <a asp-action="Index" asp-controller="Books" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-user-account"></i>
-                <div >Customer</div>
+                <div >Books</div>
             </a>
         </li>
         <li class="menu-item @(IsMenuActive("HouseOwner") ? " active open" : "") ">

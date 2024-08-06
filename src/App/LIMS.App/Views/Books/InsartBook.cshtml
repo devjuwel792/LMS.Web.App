@@ -142,13 +142,11 @@
                 data: book,
                 success: function (data) {
                     $("#loadBookData").html(data)
-                    // GetallBooks();
-                    CleanInput(true);
+                    $("#PostBook").trigger("reset");
                     if (typeof (tinyMCE) != 'undefined') {
                         $('#tinymce').val('');  // Removes all paragraphs in the active editor
                     }
-                    // DropdownCategory();
-                    // GetAllCategory();
+                   
                     loading(false)
                     Toast.fire({
                         icon: "success",
