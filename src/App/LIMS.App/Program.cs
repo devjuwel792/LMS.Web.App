@@ -1,3 +1,4 @@
+using LMS.Domain.Model.Mail;
 using LMS.loC.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,8 @@ builder.Services.AddControllersWithViews();
 
 // Add dbContext
 builder.Services.AddIOCConfiguration(builder.Configuration);
-
+// Add Email Configuration
+builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection("EmailSetting"));
 //builder.Services.a
 var app = builder.Build();
 
