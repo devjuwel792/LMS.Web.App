@@ -20,15 +20,8 @@ public static class ServiceCollectionExtension
         }, ServiceLifetime.Scoped);
 
         // Configure EmailSetting
-        //services.Configure<EmailSetting>(configuration.GetSection(ApplicationConstants.EmailSetting));
-        //services.Configure<IdentityOptions>(options =>
-        //{
-        //    options.Password.RequiredLength = 7;
-        //    options.Password.RequireDigit = false;
-        //    options.Password.RequireLowercase = false;
-        //    options.Password.RequireUppercase = false;
-        //    options.Password.RequiredUniqueChars = 0;
-        //});
+        //services.Configure<EmailSetting>(configuration.GetSection("emailSettings"));
+      
 
         // Configure Identity
         services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
@@ -38,6 +31,15 @@ public static class ServiceCollectionExtension
                 {
                     config.LoginPath = "/login";
                 });
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            options.Password.RequiredLength = 4;
+            options.Password.RequireDigit = false;
+            options.Password.RequireLowercase = false;
+            options.Password.RequireUppercase = false;
+            options.Password.RequiredUniqueChars = 1;
+        });
 
         return services;
     }

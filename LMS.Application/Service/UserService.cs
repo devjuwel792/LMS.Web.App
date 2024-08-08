@@ -15,8 +15,10 @@ public class UserService(IHttpContextAccessor httpContextAccessor) : IUserServic
         return httpContextAccessor.HttpContext.User?.FindFirstValue(ClaimTypes.NameIdentifier);
     }
 
-    public bool? IsAuthenticated()
+    public bool IsAuthenticated()
     {
-        return httpContextAccessor.HttpContext.User?.Identity?.IsAuthenticated;
+        return httpContextAccessor.HttpContext.User?.Identity?.IsAuthenticated ?? false;
     }
+
+    
 }

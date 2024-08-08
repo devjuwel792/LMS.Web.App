@@ -17,6 +17,7 @@ public class ApplicationUserClaimsPrincipalFactory(UserManager<ApplicationUser> 
         var identity = await base.GenerateClaimsAsync(user);
         identity.AddClaim(new Claim("DisplayName", user.Name));
 
+
         return identity;
     }
 }

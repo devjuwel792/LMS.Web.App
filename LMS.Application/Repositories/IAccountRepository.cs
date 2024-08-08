@@ -12,4 +12,6 @@ public interface IAccountRepository
     Task<SignInResult> PasswordSignInAsync(LoginVm data);
 
     Task SignOutAsync();
+
+    Task<IdentityResult> ChangePasswordAsync(ChangePasswordVm data);
 }

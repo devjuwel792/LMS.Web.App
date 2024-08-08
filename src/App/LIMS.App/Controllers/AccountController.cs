@@ -45,8 +45,7 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
     [HttpPost]
     public async Task<IActionResult> Login(LoginVm data, string returnUrl)
     {
-        if (ModelState.IsValid)
-        {
+        
             var result = await accountRepository.PasswordSignInAsync(data);
             if (result.Succeeded)
             {
@@ -56,7 +55,7 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
                 }
                 return RedirectToAction("Index", "Home");
             }
-        }
+        
         return View(data);
     }
 
@@ -86,6 +85,26 @@ public class AccountController(IAccountRepository accountRepository, IMapper map
             throw;
         }
        
+        return View();
+    }
+
+
+    [HttpPost("ChangePassword")]
+    public async Task<IActionResult> ChangePassword(ChangePasswordVm data)
+    {
+        if (ModelState.IsValid)
+        {
+            await accountRepository.ChangePasswordAsync(data);
+            ModelState.Clear();
+        }
+
+        return View(data);
+    }
+    [Route("change-password")]
+    public async Task<IActionResult> ChangePassword()
+    {
+        
+
         return View();
     }
     private string HtmlTemplate()

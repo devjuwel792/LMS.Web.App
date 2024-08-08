@@ -20,6 +20,7 @@ public static class ServiceCollectionExtensions
       .WithScopedLifetime());
 
         services.AddScoped<IAccountRepository, AccountRepository>();
+        services.AddScoped<IEmailService, EmailService>();
         services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, ApplicationUserClaimsPrincipalFactory>();
         services.AddScoped<IUserService, UserService>();
 

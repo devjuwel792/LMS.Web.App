@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using LMS.Application.Service;
 using LMS.Application.ViewModel.IdentityModelViewModel;
 using LMS.Domain.Model;
 using LMS.Domain.Model.IdentityModels;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace LMS.Application.Repositories;
 
-public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper mapper, SignInManager<ApplicationUser> signInManager) : IAccountRepository
+public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper mapper, SignInManager<ApplicationUser> signInManager, IUserService userService) : IAccountRepository
 {
     private readonly UserManager<ApplicationUser> userManager = userManager;
 
@@ -39,5 +40,13 @@ public class AccountRepository(UserManager<ApplicationUser> userManager, IMapper
     public async Task SignOutAsync()
     {
         await signInManager.SignOutAsync();
+    }
+
+    public async Task<IdentityResult> ChangePasswordAsync(ChangePasswordVm data)
+    {
+        var userId = userService.GetUserId();
+
+        var user = await userManager.FindByIdAsync(userId);
+        return await userManager.ChangePasswordAsync(user, data.CurrentPassword, data.NewPassword);
     }
 }
