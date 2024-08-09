@@ -1,9 +1,9 @@
 ## 🎨 Asp.net Core 8 Library Management System
 [![Project Status: Active.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-![Stars](https://img.shields.io/github/stars/imranhsayed/nextjs-woocommerce-restapi?label=%E2%AD%90%20Stars)
-![Forks](https://img.shields.io/github/forks/imranhsayed/nextjs-woocommerce-restapi?color=%23ff69b4)
-![Contributors](https://img.shields.io/github/contributors/imranhsayed/nextjs-woocommerce-restapi?color=blue)
-![Follow](https://img.shields.io/github/followers/imranhsayed?label=Please%20follow%20%20to%20support%20my%20work%20%F0%9F%99%8F&style=social)
+![Stars](https://img.shields.io/github/stars/devjuwel792/nextjs-woocommerce-restapi?label=%E2%AD%90%20Stars)
+![Forks](https://img.shields.io/github/forks/devjuwel792/nextjs-woocommerce-restapi?color=%23ff69b4)
+![Contributors](https://img.shields.io/github/contributors/devjuwel792/nextjs-woocommerce-restapi?color=blue)
+![Follow](https://img.shields.io/github/followers/devjuwel792?label=Please%20follow%20%20to%20support%20my%20work%20%F0%9F%99%8F&style=social)
 
 - React WooCommerce Theme, using Decoupled Architecture in Next.js
 - Backend in WordPress
