@@ -3,7 +3,7 @@
 ![Stars](https://img.shields.io/github/stars/devjuwel792/LMS.Web.App?label=%E2%AD%90%20Stars)
 ![Forks](https://img.shields.io/github/forks/devjuwel792/LMS.Web.App?color=%23ff69b4)
 ![Contributors](https://img.shields.io/github/contributors/devjuwel792/LMS.Web.App?color=blue)
-![Follow](https://img.shields.io/github/followers/devjuwel792?label=Please%20follow%20%20to%20support%20my%20work%20%F0%9F%99%8F&style=social)
+![Follow](https://img.shields.io/github/followers/devjuwel792?label=Please%20follow%20%20to%20support%20my%20work&style=social)
 
 - React WooCommerce Theme, using Decoupled Architecture in Next.js
 - Backend in WordPress
