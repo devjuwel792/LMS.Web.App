@@ -4,6 +4,7 @@ using LMS.Infrastructure.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LMS.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240815144820_UserRole123")]
+    partial class UserRole123
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,48 +142,14 @@ namespace LMS.Infrastructure.Migrations
                         {
                             Id = 1L,
                             CreateBy = 0L,
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 8, 17, 19, 27, 27, 932, DateTimeKind.Unspecified).AddTicks(5786), new TimeSpan(0, 6, 0, 0, 0)),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 8, 15, 20, 48, 18, 342, DateTimeKind.Unspecified).AddTicks(2302), new TimeSpan(0, 6, 0, 0, 0)),
                             Default = true,
                             IsDeleted = false,
                             Name = "UnCategoried",
                             RootId = 0L,
                             UpdateBy = 0L,
-                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 8, 17, 19, 27, 27, 932, DateTimeKind.Unspecified).AddTicks(5822), new TimeSpan(0, 6, 0, 0, 0))
+                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 8, 15, 20, 48, 18, 342, DateTimeKind.Unspecified).AddTicks(2393), new TimeSpan(0, 6, 0, 0, 0))
                         });
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.ApplicationRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles", (string)null);
                 });
 
             modelBuilder.Entity("LMS.Domain.Model.IdentityModels.ApplicationUser", b =>
@@ -251,58 +220,6 @@ namespace LMS.Infrastructure.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.Permission", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("CreateBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
-
-                    b.Property<long>("UpdateBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Permission", (string)null);
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.RolePermission", b =>
-                {
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<long>("PermissionId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("RoleId", "PermissionId");
-
-                    b.HasIndex("PermissionId");
-
-                    b.ToTable("RolePermission", (string)null);
-                });
-
             modelBuilder.Entity("LMS.Domain.Model.Publisher", b =>
                 {
                     b.Property<long>("Id")
@@ -344,66 +261,12 @@ namespace LMS.Infrastructure.Migrations
                         {
                             Id = 1L,
                             CreateBy = 0L,
-                            CreatedDate = new DateTimeOffset(new DateTime(2024, 8, 17, 19, 27, 27, 932, DateTimeKind.Unspecified).AddTicks(9704), new TimeSpan(0, 6, 0, 0, 0)),
+                            CreatedDate = new DateTimeOffset(new DateTime(2024, 8, 15, 20, 48, 18, 342, DateTimeKind.Unspecified).AddTicks(5501), new TimeSpan(0, 6, 0, 0, 0)),
                             IsDeleted = false,
                             Name = "UnKnown",
                             UpdateBy = 0L,
-                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 8, 17, 19, 27, 27, 932, DateTimeKind.Unspecified).AddTicks(9712), new TimeSpan(0, 6, 0, 0, 0))
+                            UpdatedDate = new DateTimeOffset(new DateTime(2024, 8, 15, 20, 48, 18, 342, DateTimeKind.Unspecified).AddTicks(5516), new TimeSpan(0, 6, 0, 0, 0))
                         });
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.Report", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long?>("BookId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long?>("BooksId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("CreateBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("CreatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("IssueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IssueStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ReturnDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("ReturnStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("UpdateBy")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTimeOffset>("UpdatedDate")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BooksId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Report", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -412,34 +275,42 @@ namespace LMS.Infrastructure.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("IdentityRole");
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
 
                     b.HasData(
                         new
                         {
-                            Id = "12b9fa0e-836d-4fee-a102-53269210846a",
+                            Id = "a7f8965e-6a31-49fb-8bb3-d7a3a65a4d78",
                             Name = "student",
                             NormalizedName = "student"
                         },
                         new
                         {
-                            Id = "0530d14f-47e3-4e2b-9184-e42a6e8d15c8",
+                            Id = "78fec8c8-f529-453e-beb5-2503503543d6",
                             Name = "admin",
                             NormalizedName = "admin"
                         },
                         new
                         {
-                            Id = "e7ab2ed2-eb5b-4363-82c8-0672e4174b22",
+                            Id = "987dbad9-be71-4064-9b96-1c6b6a15b3ea",
                             Name = "librarian",
                             NormalizedName = "librarian"
                         });
@@ -570,45 +441,9 @@ namespace LMS.Infrastructure.Migrations
                     b.Navigation("Publisher");
                 });
 
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.RolePermission", b =>
-                {
-                    b.HasOne("LMS.Domain.Model.IdentityModels.Permission", "Permission")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("PermissionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("LMS.Domain.Model.IdentityModels.ApplicationRole", "Role")
-                        .WithMany("RolePermissions")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Permission");
-
-                    b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.Report", b =>
-                {
-                    b.HasOne("LMS.Domain.Model.Books", "Books")
-                        .WithMany()
-                        .HasForeignKey("BooksId");
-
-                    b.HasOne("LMS.Domain.Model.IdentityModels.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Books");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("LMS.Domain.Model.IdentityModels.ApplicationRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -635,7 +470,7 @@ namespace LMS.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("LMS.Domain.Model.IdentityModels.ApplicationRole", null)
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -660,16 +495,6 @@ namespace LMS.Infrastructure.Migrations
             modelBuilder.Entity("LMS.Domain.Model.Category", b =>
                 {
                     b.Navigation("Books");
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.ApplicationRole", b =>
-                {
-                    b.Navigation("RolePermissions");
-                });
-
-            modelBuilder.Entity("LMS.Domain.Model.IdentityModels.Permission", b =>
-                {
-                    b.Navigation("RolePermissions");
                 });
 
             modelBuilder.Entity("LMS.Domain.Model.Publisher", b =>
