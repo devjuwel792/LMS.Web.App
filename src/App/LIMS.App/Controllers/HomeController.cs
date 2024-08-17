@@ -4,9 +4,6 @@ using LMS.Application.Repositories;
 using LMS.Application.ViewModel;
 using LMS.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Mono.TextTemplating;
-using System.Diagnostics;
 
 namespace LMS.App.Controllers
 {
@@ -15,8 +12,13 @@ namespace LMS.App.Controllers
         public async Task<IActionResult> Index()
         {
             var data = await categoryRepository.GetAsync();
-
+            
             return View(data);
+        }
+        public IActionResult Dashboard()
+        {
+
+        return View(); 
         }
 
         public ActionResult<Category> CreateOrEdit(int id)

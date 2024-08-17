@@ -10,7 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddIOCConfiguration(builder.Configuration);
 // Add Email Configuration
 builder.Services.Configure<EmailSetting>(builder.Configuration.GetSection("EmailSetting"));
-//builder.Services.a
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -23,13 +23,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}"
+    );
 
 app.Run();
