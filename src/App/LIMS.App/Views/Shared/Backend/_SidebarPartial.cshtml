@@ -23,7 +23,7 @@
     <ul class="menu-inner py-1">
         <!-- Dashboards -->
         <li class="menu-item @(IsMenuActive("Home") ? " active open" : "")">
-            <a asp-action="Index" asp-controller="Admin" class="menu-link">
+            <a asp-action="DashBoard" asp-controller="Home" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Dashboards">Dashboards</div>
                 <div class="badge bg-danger rounded-pill ms-auto">5</div>
@@ -47,39 +47,55 @@
             </a>
         </li>
         <li class="menu-item @(IsMenuActive("HouseOwner") ? " active open" : "") ">
-            <a asp-action="Index" asp-controller="HouseOwner" class="menu-link">
+            <a asp-action="InsartBook" asp-controller="Books" class="menu-link">
                 <i class=''></i>
                 <i class="menu-icon tf-icons bx bx-buildings"></i>
-                <div data-i18n="Dashboards">House Owner</div>
+                <div data-i18n="Dashboards">Create Book</div>
+            </a>
+        </li> 
+        <li class="menu-item @(IsMenuActive("HouseOwner") ? " active open" : "") ">
+            <a asp-action="Index" asp-controller="Category" class="menu-link">
+                <i class=''></i>
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div data-i18n="Dashboards">Book Category</div>
+            </a>
+        </li> 
+        <li class="menu-item @(IsMenuActive("HouseOwner") ? " active open" : "") ">
+            <a asp-action="Index" asp-controller="Category" class="menu-link">
+                <i class=''></i>
+                <i class="menu-icon tf-icons bx bx-buildings"></i>
+                <div data-i18n="Dashboards">Book Publisher</div>
             </a>
         </li>
         
 
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Rooftop</span></li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">User</span></li>
         <li class="menu-item @((ViewBag.path=="/Farm") ? " active open" : "") ">
-            <a asp-action="Index" asp-controller="Farm" class="menu-link">
+            <a asp-action="" asp-controller="" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-building-house"></i>
-                <div data-i18n="Dashboards">Available Rooftop</div>
+                <div data-i18n="Dashboards">All user</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Media</span></li>
         <li class="menu-item @((ViewBag.path=="/Farm/CreateOrEditRoofTop") ? " active open" : "") ">
             <a asp-action="CreateOrEditRoofTop" asp-controller="Farm" class="menu-link">
                 <i class="menu-icon tf-icons bx bxs-plus-circle"></i>
-                <div data-i18n="Dashboards">Add Rooftop</div>
+                <div data-i18n="Dashboards">Media Gallery</div>
             </a>
         </li>
-        <li class="menu-header small text-uppercase"><span class="menu-header-text">Payment</span></li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Books Report</span></li>
         <li class="menu-item @((ViewBag.path=="/Payment") ? " active open" : "")">
-            <a asp-action="Index" asp-controller="Payment" class="menu-link">
+            <a asp-action="BookIssue" asp-controller="Report" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-support"></i>
-                <div data-i18n="Support">Confirm</div>
+                <div data-i18n="Support">Books Issues</div>
             </a>
         </li>
         <li class="menu-item @((ViewBag.path=="/Payment/Pending") ? " active open" : "")">
-            <a asp-action="Pending" asp-controller="Payment" class="menu-link">
+            <a asp-action="BookReturn" asp-controller="Report" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-file"></i>
-                <div data-i18n="Documentation">Pending</div>
+                <div data-i18n="Documentation">Returns Books</div>
             </a>
         </li>
+        <li class="menu-header small text-uppercase"><span class="menu-header-text">Settings</span></li>
     </ul>
 </aside>

@@ -42,6 +42,7 @@ public class EmailService(IOptions<EmailSetting> options) : IEmailService
 
         builder.HtmlBody = mailrequest.Body;
         email.Body = builder.ToMessageBody();
+      
 
         using var smtp = new SmtpClient();
         smtp.Connect(emailSettings.Host, emailSettings.Port, SecureSocketOptions.StartTls);

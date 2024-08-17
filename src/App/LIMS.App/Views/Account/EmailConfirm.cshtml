@@ -1,0 +1,28 @@
+﻿
+@{
+    var sucess = TempData["IsSucess"];
+}
+
+<div class="container">
+    <div class="row text-cener">
+        <div class="col-md-4">
+            
+             @if (sucess != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    <p>Your Email has been Verified successfully</p>
+                    <a class="btn btn-primary" href="/">Go to Home</a>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">
+                    <p>Something went wrong</p>
+                    <a class="btn btn-primary" href="/">Go to Home</a>
+                </div>
+            } 
+
+            
+        </div>
+    </div>
+</div>
