@@ -1,21 +1,8 @@
 ﻿using AutoMapper;
-using LMS.Application.ViewModel;
 using LMS.Domain.Model.BaseEntities;
 using LMS.Infrastructure.DatabaseContext;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Formats.Tar;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace LMS.Application.Repositories.Base;
 
