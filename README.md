@@ -6,7 +6,6 @@
 ![Follow](https://img.shields.io/github/followers/devjuwel792?label=Please%20follow%20%20to%20support%20my%20work&style=social)
 
 
-- Data is Fetched through REST API.
 
 ## Features
 - [x] Registration, Email confirmation, Login ,logout, change password, feature 
@@ -14,7 +13,7 @@
 - [ ] 2 Factor authentication 
 - [x] Create,Delete,Update,Edit,Get Book
 - [x] Create,Delete,Update,Edit,Default,Get Categories
-- [] Create,Delete,Update,Edit,Default,Get Publisher
+- [ ] Create,Delete,Update,Edit,Default,Get Publisher
 - [x] Media Upload,Delete, Get
 - [x] User CRUD
 - [ ] Book Issued
