@@ -9,7 +9,16 @@
 - Data is Fetched through REST API.
 
 ## Features
-- [x] Login feature 
-
-- [ ] 
+- [x] Registration, Email confirmation, Login ,logout, change password, feature 
+- [x] Role base authentication
+- [ ] 2 Factor authentication 
+- [x] Create,Delete,Update,Edit,Get Book
+- [x] Create,Delete,Update,Edit,Default,Get Categories
+- [] Create,Delete,Update,Edit,Default,Get Publisher
+- [x] Media Upload,Delete, Get
+- [x] User CRUD
+- [ ] Book Issued
+- [ ] Book Return
+- [x] Email SMTP intigration
+  
 
